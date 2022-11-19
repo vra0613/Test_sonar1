@@ -3,7 +3,7 @@ pipeline {
   tools{
     maven 'local_maven'
      }
-		satages {
+		stages {
 			stage ('BUILD') {
 				steps {
 					sh 'mvn clean package'
@@ -15,7 +15,7 @@ pipeline {
 					sh 'mvn clean install'
 				}
 				post{
-					sucecess{
+					success{
 						echo "Archiving the Artifacts"
 						archiveArtifacts artifacts: '**/target/*.war' 
 					}
