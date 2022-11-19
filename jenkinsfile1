@@ -1,0 +1,18 @@
+pipeline {
+  agent { label 'javahome' }
+   environment {
+    PATH = "/opt/apache-maven-3.8.6/bin/:$PATH"
+    }
+    stages {
+      stage ("BUILD") {
+        steps {
+            sh "mvn clean install"
+        }
+      }
+       stage ("DEPLOYING") {
+        steps {
+            sh "cp /home/ubuntu/jenkins-workspace/workspace/java-deploy-pipeline/target/hello-world-war-1.0.0.war /opt/apache-tomcat-10.0.27/webapps"
+        }
+      }
+    }
+  }
